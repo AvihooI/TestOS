@@ -10,7 +10,10 @@ TARGET := testos.bin
 ALL_OBJ := environment.o \
 		boot.o \
 		kernel.o \
-		string.o
+		string.o \
+		idt.o \
+		gdt.o \
+		load_gdt.o
 ALL_DEP := $(patsubst %.o,.%.d,$(ALL_OBJ))
 
 #Assembly configuration
@@ -25,7 +28,7 @@ CFLAGS := -std=gnu99 -m32 -ffreestanding -O2 -Wall -Wextra
 LD := ld
 LD_FLAGS := -m elf_i386 -T linker.ld
 
-#all rules
+#All rules
 .PHONY : all testos clean
 all : $(TARGET)
 testos : $(TARGET)

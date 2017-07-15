@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "terminal.h": "c"
+        "terminal.h": "c",
+        "idt.h": "c",
+        "gdt.h": "c",
+        "types.h": "c"
     }
 }

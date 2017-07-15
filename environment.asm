@@ -12,8 +12,3 @@ align 4
 stack_bottom:
 resb 16384
 stack_top:
-
-section .text
-resb 16384
-
-
