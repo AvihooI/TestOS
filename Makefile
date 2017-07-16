@@ -12,7 +12,6 @@ ALL_OBJ := environment.o \
 		kernel.o \
 		string.o \
 		idt.o \
-		gdt.o \
 		load_gdt.o
 ALL_DEP := $(patsubst %.o,.%.d,$(ALL_OBJ))
 
@@ -49,8 +48,7 @@ testos.bin: $(ALL_OBJ)
 	@$(LD) -o $@ $(LD_FLAGS) $^
 
 clean:
-	rm -f *.o
-	rm -f testos.bin
+	rm -f $(ALL_DEP) $(ALL_OBJ)
 
 ifneq ($(MAKECMDGOALS),clean)
 -include $(ALL_DEP)
