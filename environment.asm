@@ -1,11 +1,12 @@
 gdtr:
-gdt_limit   dw 8*5
-gdt_base    dd gd_table
+    gdt_limit   dw 8*5
+    gdt_base    dd gd_table
 
 align 8
 gd_table:
 .gdt_e_null:
-    dq 0
+    dd gdt_limit
+    dd gdt_base
 .gdt_e_code_0:
     dw 0xffff
     dw 0
@@ -50,7 +51,7 @@ gdt_reload:
     mov ss, ax
 finish:
     extern kernel_main
-    call kernel_main    
+    call kernel_main
     cli
     .hang: hlt
     jmp .hang
