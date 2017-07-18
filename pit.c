@@ -3,8 +3,9 @@
 #include "terminal.h"
 #include "irq.h"
 
-volatile dword timer_ticks = 0; //volatile extremely important since those values changed via interrupts
+volatile dword timer_ticks = 0; //volatile extremely important since those values change via interrupts
 volatile dword timer_seconds = 0;
+volatile byte waiting;
 
 void pit_set_timer_phase(word hz)
 {
@@ -19,7 +20,7 @@ void timer_handler(struct regs *r)
 {
     timer_ticks++;
 
-    if (timer_ticks % 18 == 0)
+    if (timer_ticks % 18 == 0 && waiting)
     {
         terminal_write_str("One second has passed!\n");
         timer_seconds++;
@@ -33,10 +34,13 @@ void init_pit()
 
 void timer_wait(dword seconds)
 {
+    waiting = 1;
     timer_seconds = 0;
 
     while (timer_seconds < seconds)
     {
         asm("nop"); //making sure the loop actually runs :)
     }
+
+    waiting = 0;
 }

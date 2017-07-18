@@ -2,6 +2,7 @@
 #include "irq.h"
 #include "idt.h"
 #include "io.h"
+#include "terminal.h"
 
 void *irq_handlers[16] = 
 {

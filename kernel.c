@@ -22,7 +22,13 @@ void kernel_main()
 
     timer_wait(4);
 
-    terminal_write_str("Alright if we got all the way here!\n");
+    terminal_write_str("Setting up KB\n");
+
+    init_kb();
+
+    terminal_write_str("Write stuff!\n");
+
+    for(;;);
 
     return;
 }

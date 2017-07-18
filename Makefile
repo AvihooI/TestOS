@@ -16,7 +16,8 @@ ALL_OBJ := environment.o \
 		_idt.o \
 		irq.o \
 		_irq.o \
-		pit.o
+		pit.o \
+		kb.o
 ALL_DEP := $(patsubst %.o,.%.d,$(ALL_OBJ))
 
 #Assembly configuration
