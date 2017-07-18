@@ -3,6 +3,7 @@
         "terminal.h": "c",
         "idt.h": "c",
         "gdt.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "irq.h": "c"
     }
 }

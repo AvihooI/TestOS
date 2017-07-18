@@ -19,14 +19,6 @@ void set_idt_entry(size_t index, dword isr, word cs_selector, byte type_attr);
 
 void init_idt();
 
-struct regs
-{
-    dword gs, fs, es, ds;
-    dword edi, esi, ebp, esp, ebx, edx, ecx, eax;
-    dword int_no, err_code;
-    dword eip, cs, eflags, useresp, ss;
-} __attribute__((packed));;
-
 extern void _isr_0();
 extern void _isr_1();
 extern void _isr_2();
@@ -60,6 +52,6 @@ extern void _isr_29();
 extern void _isr_30();
 extern void _isr_31();
 
-__attribute__((used,regparm(0)))  void fault_handler(struct regs *r);
+asmlinkage  void fault_handler(struct regs *r);
 
 #endif

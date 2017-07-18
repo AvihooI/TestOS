@@ -9,10 +9,14 @@
 TARGET := testos.bin
 ALL_OBJ := environment.o \
 		boot.o \
+		_io.o \
 		kernel.o \
 		string.o \
 		idt.o \
-		_idt.o
+		_idt.o \
+		irq.o \
+		_irq.o \
+		pit.o
 ALL_DEP := $(patsubst %.o,.%.d,$(ALL_OBJ))
 
 #Assembly configuration

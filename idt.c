@@ -27,7 +27,7 @@ char * exception_messages[] =
     "Stack-Segment Fault",
     "General Protection",
     "Page Fault",
-    "Reserved",
+    "Reserved", //15
     "Math Fault",
     "Alignment Check",
     "Machine Check",
@@ -48,7 +48,6 @@ char * exception_messages[] =
 
 void init_idt()
 {
-    //present, dpl = ring 0, the rest is 01110
     set_idt_entry(0, (dword)_isr_0, 0x08, 0x8E);
     set_idt_entry(1, (dword)_isr_1, 0x08, 0x8E);
     set_idt_entry(2, (dword)_isr_2, 0x08, 0x8E);
@@ -85,7 +84,7 @@ void init_idt()
     load_idt();
 }
 
- __attribute__((used,regparm(0)))  void fault_handler(struct regs *r)
+asmlinkage  void fault_handler(struct regs *r)
 {
     if (r->int_no < 32)
     {
